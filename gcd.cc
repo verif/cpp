@@ -1,12 +1,11 @@
 #include <stdio.h>
+#include <algorithm>
 
 int gcd (int i, int j) {
   int done = 0;
   while (!done) {
     if (i < j) {
-      int tmp = i;
-      i = j;
-      j = tmp;
+      std::swap (i, j);
     }
     else if (j != 0) {
       i = i - j;
@@ -18,7 +17,7 @@ int gcd (int i, int j) {
 }
 
 int main() {
-  int i = 11;
+  int i = 12;
   int j = 9;
   printf("The GCD of %d %d is %d\n", i, j, gcd(i, j));
   return 0;
