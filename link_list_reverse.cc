@@ -10,18 +10,17 @@ typedef struct ListNode {
 } ListNode;
 
 ListNode * reverse_list(ListNode * head) {
-  if (!head) return NULL;
+  ListNode * curr = head;
+  ListNode * prev = NULL;
+  ListNode * next = NULL;
 
-  ListNode * prev, * cur, * next;
-  prev = NULL;
-  cur = head;
-  next = cur->next;
-  while (cur) {
-    cur->next = prev;
+  while (curr) {
+    next = curr->next;
+    curr->next = prev;
+
     // move to next
-    prev = cur;
-    cur = next;
-    next = next ? next->next : NULL;
+    prev = curr;
+    curr = next;
   }
   return prev;
 }
@@ -50,6 +49,12 @@ int main () {
   ListNode * head;
   int A[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
   head = init_list(A, sizeof(A)/sizeof(int));
+  disp_list(head);
+  head = reverse_list(head);
+  disp_list(head);
+
+  int B[] = {1};
+  head = init_list(B, sizeof(B)/sizeof(int));
   disp_list(head);
   head = reverse_list(head);
   disp_list(head);

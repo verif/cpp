@@ -31,26 +31,27 @@ ListNode * delete_node (ListNode * head, int val) {
 }
 
 ListNode * delete_node_v2 (ListNode * head, int val) {
-  if (!head) return NULL;
-  if (head->val == val) {
-    ListNode * newHead = head->next;
-    delete head;
-    return newHead;
+  ListNode * prev = NULL;
+  ListNode * curr = head;
+
+  while (curr) {
+    if (curr->val == val)
+      break;
+    prev = curr;
+    curr = curr->next;
   }
 
-  ListNode * cur, * prev;
-  cur = head->next;
-  prev = head;
-
-  while (cur) {
-    if (cur->val == val) {
-      // found, remove it and adjust pointers on prev node
-      prev->next = cur->next;
-      delete cur;
-      break;
+  if (curr) {
+    if (prev == NULL) {
+      head = curr->next; // adjust head pointer
     }
-    prev = cur;
-    cur = cur->next;
+    else {
+      prev->next = curr->next;
+    }
+    delete curr;
+  }
+  else {
+    // didn't find match
   }
   return head;
 }
@@ -80,7 +81,7 @@ int main () {
   int A[] = {1, 2, 3, 4};
   head = init_list(A, 4);
   disp_list(head);
-  head = delete_node_v2(head, 4);
+  head = delete_node_v2(head, 1);
   disp_list(head);
   return 0;
 }

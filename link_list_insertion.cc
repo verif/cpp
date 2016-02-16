@@ -11,25 +11,27 @@ typedef struct ListNode {
 
 // insert node after target node
 ListNode * insert_node (ListNode * head, int targetVal, int newVal) {
-  if (!head) return NULL;
-  ListNode * cur, * prev;
-  ListNode dummy(0);
-  dummy.next = head;
-  cur = head;
-  prev = &dummy;
+  // try to find the target value in existing nodes and insert new node
+  // after that. If not found, insert at the end of list.
+  ListNode * curr = head;
+  ListNode * prev = NULL;
+  int found = 0;
 
-  while (cur) {
-    if (cur->val == targetVal) {
-      // found, insert new node after it and adjust pointers on prev node
-      ListNode * newNode = new ListNode(newVal);
-      newNode->next = cur->next;
-      cur->next = newNode;
-      break;
-    }
-    prev = cur;
-    cur = cur->next;
+  while (curr && found == 0) {
+    if (curr->val == targetVal)
+      found = 1;
+    // move to next
+    prev = curr;
+    curr = curr->next;
   }
-  return dummy.next;
+
+  ListNode * newNode = new ListNode(newVal);
+  prev->next = newNode;
+  newNode->next = curr;
+  if (head == NULL)
+    head = newNode;
+
+  return head;
 }
 
 // helper function
