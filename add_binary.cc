@@ -45,7 +45,7 @@ public:
 
 int main () {
   Solution S;
-  string s1 = S.addBinary("0", "1");
+  string s1 = S.addBinary("1001", "1");
   printf("s1=%s\n", s1.c_str());
   return 0;
 }
