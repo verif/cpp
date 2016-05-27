@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <algorithm>
 
+// Greatest Common Divider
+
 int gcd (int i, int j) {
   int done = 0;
   while (!done) {

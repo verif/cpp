@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <map>
 //#include <hash_map.h>
-//#include <unordered_map.h>
+#include <unordered_map>
+#include <iostream>
+
+using namespace std;
 
 struct eqstr
 {
@@ -15,7 +19,8 @@ struct eqstr
 int main()
 {
   //hash_map<const char*, int, hash<const char*>, eqstr> months;
-  unordered_map<const char*, int, hash<const char*>, eqstr> months;
+  //unordered_map<const char*, int, hash<const char*>, eqstr> months;
+  unordered_map<const char*, int> months;
   
   months["january"] = 31;
   months["february"] = 28;
